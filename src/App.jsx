@@ -1,14 +1,21 @@
-import { useState } from "react";
-import "./App.css";
+import { Routes, Route, Navigate } from "react-router-dom";
+import "./styles/App.css";
+import NavBar from "./components/Navbar.jsx";
+import TodosPage from "./pages/TodosPage.jsx";
+import ContactsPage from "./pages/ContactsPage.jsx";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <header>
-        <h1 id="logo">TODO MANAGER</h1>
-      </header>
+      <NavBar />
+      <main>
+        <Routes>
+          <Route path="/" element={<Navigate to="/todos" replace />} />
+          <Route path="/todos" element={<TodosPage />} />
+          <Route path="/contacts" element={<ContactsPage />} />
+          <Route path="*" element={<h2>Not Found</h2>} />
+        </Routes>
+      </main>
     </>
   );
 }

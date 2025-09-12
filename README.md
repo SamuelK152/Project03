@@ -1,12 +1,38 @@
-# React + Vite
+# TODO Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## User Stories
 
-Currently, two official plugins are available:
+- TODO User Story 1:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  - As someone who's task list is increasing,
+  - I want to create add a TODO item with a description to my list,
+  - So that I can manage my assignments more efficiently.
 
-## Expanding the ESLint configuration
+- TODO User Story 2:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+  - As someone who's assignment requirements are changing,
+  - I want to edit my existing TODO items,
+  - So that I can keep an up-to-date list of assignments.
+
+- TODO User Story 3:
+
+  - As someone who's completed a task on their list,
+  - I want to mark a TODO item as complete,
+  - So that I can keep track of my progress.
+
+- Contacts User Story 1
+
+  - As someone who needs to add a new contact,
+  - I want to add new contact information,
+  - So I can contact the individual.
+
+- Contacts User Story 2
+
+  - As someone who needs to update one of their contact's email address,
+  - I want to edit existing contact information,
+    So that I can have an up-to-date contact list.
+
+- Contacts User Story 3
+  - As someone who no longer needs to contact someone,
+  - I want to delete a contact from my list,
+  - So I can keep a clean record.
