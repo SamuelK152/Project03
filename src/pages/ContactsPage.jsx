@@ -1,7 +1,7 @@
 export default function ContactsPage() {
   return (
     <section>
-      <h2>Contacts</h2>
+      <h2 className="page-title">Contacts</h2>
     </section>
   );
 }

@@ -1,9 +1,18 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 6rem 2rem 2rem;
+  padding: 0 2rem 2rem;
   text-align: center;
-  justify-content: center;
+}
+
+body {
+  background-color: #d6d6d6;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 
 header {
@@ -16,18 +25,165 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 0 2rem;
-  border-bottom: 1px solid #ddd;
   z-index: 1000;
   width: 100%;
   box-sizing: border-box;
+  background-color: #7ea6e0;
 }
 
 #logo {
   display: flex;
   margin-right: auto;
 }
-
 #nav-buttons {
   display: flex;
   margin-left: auto;
+}
+
+.nav-link {
+  color: #f2f4f7;
+  padding: 2rem;
+}
+
+.nav-link:hover {
+  color: #1e1e2f;
+}
+
+/* --- Drawer --- */
+.todo-drawer.handle-right {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  height: calc(100% - 64px);
+  width: 320px;
+  max-width: 90%;
+  display: flex;
+  transform: translateX(calc(-100% + 64px));
+  transition: transform 0.3s ease;
+  z-index: 1200;
+  pointer-events: none;
+}
+.todo-drawer.handle-right.open {
+  transform: translateX(0);
+}
+
+.todo-drawer.handle-right .drawer-body {
+  flex: 1;
+  background: #30384b;
+  color: #d6d6d6;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 1.25rem 1.5rem;
+  overflow-y: auto;
+  pointer-events: auto;
+}
+
+/* Handle button*/
+.drawer-handle-btn {
+  width: 64px;
+  min-width: 64px;
+  background: #1e1e2f;
+  color: #fff;
+  border: none;
+  border-radius: 0%;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 1.7rem;
+  font-weight: 500;
+  padding: 0.75rem 0.25rem;
+  pointer-events: auto;
+}
+.drawer-handle-btn:hover {
+  filter: brightness(1.05);
+}
+.drawer-handle-btn:active {
+  transform: translateY(1px);
+}
+
+.drawer-handle-btn .handle-icon {
+  line-height: 1;
+}
+.drawer-handle-btn .handle-text {
+  font-size: 0.65rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.drawer-backdrop {
+  position: fixed;
+  inset: 64px 0 0 0;
+  background: rgba(0, 0, 0, 0.28);
+  z-index: 1100;
+}
+
+/* Form */
+.todo-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.todo-form input {
+  padding: 0.55rem 0.6rem;
+  border: 1px solid #1e1e2f;
+  border-radius: 4px;
+  background: #d6d6d6;
+  color: #1e1e2f;
+}
+.todo-form input:focus {
+  outline: 2px solid #d6eaf8;
+  outline-offset: 1px;
+}
+.drawer-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+.drawer-actions .primary,
+.drawer-actions .secondary {
+  padding: 0.55rem 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+.drawer-actions .primary {
+  background: #d6d6d6;
+  color: #1e1e2f;
+  border: 1px solid #1e1e2f;
+}
+.drawer-actions .primary:hover {
+  background: #d6eaf8;
+}
+.drawer-actions .secondary {
+  background: #fff;
+  border: 1px solid #d0d5dd;
+}
+.drawer-actions .secondary:hover {
+  background: #f2f4f7;
+}
+
+.todo-drawer.handle-right h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.05rem;
+}
+
+main {
+  height: 100vh;
+  margin-left: 64px;
+  transition: margin-left 0.3s ease;
+  padding-top: 80px;
+  color: black;
+}
+
+.page-title {
+  margin-top: 0;
+  padding-bottom: 2rem;
 }
