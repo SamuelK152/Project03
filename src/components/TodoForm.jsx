@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 
 export default function TodoForm({ open, onOpen, onClose, onAdd }) {
   const [text, setText] = useState("");
+  const [desc, setDesc] = useState("");
   const inputRef = useRef(null);
   const drawerRef = useRef(null);
 
@@ -14,8 +15,9 @@ export default function TodoForm({ open, onOpen, onClose, onAdd }) {
   function handleSubmit(e) {
     e.preventDefault();
     if (!text.trim()) return;
-    onAdd(text.trim());
+    onAdd({ text: text.trim(), description: desc.trim() });
     setText("");
+    setDesc("");
     onClose();
   }
 
@@ -35,6 +37,15 @@ export default function TodoForm({ open, onOpen, onClose, onAdd }) {
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 placeholder="e.g. Buy milk"
+              />
+            </label>
+            <label>
+              <span>Description</span>
+              <input
+                value={desc}
+                onChange={(e) => setDesc(e.target.value)}
+                rows={3}
+                placeholder="Details..."
               />
             </label>
             <div className="drawer-actions">

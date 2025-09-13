@@ -202,7 +202,6 @@ main {
 
 .todo-pill {
   display: flex;
-  align-items: center;
   gap: 0.65rem;
   background: #ffffff;
   border: 1px solid #1e1e2f;
@@ -211,7 +210,21 @@ main {
   font-size: 0.95rem;
   line-height: 1.2;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4);
-  height: 3rem;
+  height: auto;
+  cursor: pointer;
+  user-select: none;
+  align-items: center;
+}
+
+.pill-info {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.pill-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
 }
 
 .todo-pill:hover {
@@ -238,6 +251,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: auto;
   font-size: 0.95rem;
   cursor: pointer;
   padding: 0;
@@ -265,4 +279,5 @@ main {
 .pill-text {
   flex: 1;
   overflow-wrap: anywhere;
+  font-weight: 700;
 }

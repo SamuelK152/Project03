@@ -11,6 +11,7 @@ export default function ToDoList({ items = [], onToggle }) {
           key={item.id}
           id={item.id}
           text={item.text}
+          description={item.description}
           completed={item.completed}
           onToggle={onToggle}
         />
