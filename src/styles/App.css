@@ -187,3 +187,82 @@ main {
   margin-top: 0;
   padding-bottom: 2rem;
 }
+
+/* ...existing code... */
+.todo-list {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 60vw;
+  text-align: left;
+}
+
+.todo-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: #ffffff;
+  border: 1px solid #1e1e2f;
+  border-radius: 15px;
+  padding: 0.55rem 0.9rem 0.55rem 0.7rem;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4);
+  height: 3rem;
+}
+
+.todo-pill:hover {
+  background: #d6eaf8;
+  border-color: #1e1e2f;
+}
+
+.todo-pill.done {
+  background: #999999;
+  border-color: #1e1e2f;
+}
+
+.todo-pill.done .pill-text {
+  text-decoration: line-through;
+  color: #5b6b74;
+}
+
+.pill-toggle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #1e1e2f;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 0;
+  color: #1e1e2f;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.pill-toggle:hover {
+  background: #7ea6e0;
+  color: #fff;
+  border-color: #1e1e2f;
+}
+
+.todo-pill.done .pill-toggle {
+  border-color: #3a9c5b;
+  color: #247a40;
+}
+
+.todo-pill.done .pill-toggle:hover {
+  background: #247a40;
+  color: #fff;
+  border-color: #247a40;
+}
+
+.pill-text {
+  flex: 1;
+  overflow-wrap: anywhere;
+}

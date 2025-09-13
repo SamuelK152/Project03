@@ -1,13 +1,19 @@
 import ToDoItem from "./TodoItem";
 
-export default function ToDoList({ items = [] }) {
+export default function ToDoList({ items = [], onToggle }) {
   if (!items.length) {
     return <p>No TODOs yet.</p>;
   }
   return (
-    <ul>
-      {items.map((t, i) => (
-        <ToDoItem key={i} text={t} />
+    <ul className="todo-list">
+      {items.map((item) => (
+        <ToDoItem
+          key={item.id}
+          id={item.id}
+          text={item.text}
+          completed={item.completed}
+          onToggle={onToggle}
+        />
       ))}
     </ul>
   );
