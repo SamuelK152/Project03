@@ -75,8 +75,8 @@ export default function TodosPage() {
 
   return (
     <section className="todos-page">
-      <div className="todos-header-row">
-        <div className="todo-filters">
+      <div className="header-row">
+        <div className="item-filters">
           <label>
             <span className="visually-hidden">Filter</span>
             <select

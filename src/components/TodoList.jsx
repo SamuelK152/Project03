@@ -1,11 +1,12 @@
 import ToDoItem from "./TodoItem";
+import "../styles/ItemList.css";
 
 export default function ToDoList({ items = [], onToggle, onEdit, onDelete }) {
   if (!items.length) {
     return <p className="no-todo">No active TODOs</p>;
   }
   return (
-    <ul className="todo-list">
+    <ul className="item-list">
       {items.map((item) => (
         <ToDoItem
           key={item.id}

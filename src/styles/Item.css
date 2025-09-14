@@ -1,0 +1,230 @@
+.item-pill {
+  display: flex;
+  gap: 0.65rem;
+  background: #ffffff;
+  border: 1px solid #1e1e2f;
+  border-radius: 15px;
+  padding: 0.55rem 0.9rem 0.55rem 0.7rem;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4);
+  height: auto;
+  cursor: pointer;
+  user-select: none;
+  align-items: center;
+}
+
+.item-pill:hover {
+  background: #d6eaf8;
+  border-color: #1e1e2f;
+}
+
+.item-pill.done {
+  background: #999999;
+  border-color: #1e1e2f;
+}
+
+.item-pill.done .pill-text {
+  text-decoration: line-through;
+  color: #5b6b74;
+}
+
+.item-pill.done .pill-desc {
+  text-decoration: line-through;
+  color: #5b6b74;
+}
+
+.pill-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+}
+
+.pill-info {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.pill-text {
+  flex: 1;
+  overflow-wrap: anywhere;
+  font-weight: 700;
+}
+
+/* Toggle button */
+
+.pill-toggle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #1e1e2f;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 0;
+  color: #1e1e2f;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.pill-toggle:hover {
+  background: #7ea6e0;
+  color: #fff;
+  border-color: #1e1e2f;
+}
+
+.item-pill.done .pill-toggle {
+  border-color: #3a9c5b;
+  color: #247a40;
+}
+
+.item-pill.done .pill-toggle:hover {
+  background: #247a40;
+  color: #fff;
+  border-color: #247a40;
+}
+
+.pill-actions {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.pill-menu-btn {
+  background: transparent;
+  color: #374151;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  line-height: 1;
+  padding: 0 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.pill-menu-btn:hover {
+  background: #f0f4f8;
+  border-color: #8594a5;
+}
+
+.pill-menu {
+  position: absolute;
+  top: 36px;
+  right: 0;
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 4px 0;
+  background: #ffffff;
+  border: 1px solid #d0d7df;
+  border-radius: 8px;
+  min-width: 140px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  z-index: 10;
+}
+
+.pill-menu li {
+  margin: 0;
+  padding: 0;
+}
+
+.pill-menu button {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: #1f2933;
+}
+
+.pill-menu button:hover {
+  background: transparent;
+}
+
+.pill-menu button:active {
+  background: #d9e2ec;
+}
+
+/* Inline edit */
+
+.item-pill.editing {
+  background: #d6eaf8;
+  border-color: #7ea6e0;
+}
+
+.pill-edit-title {
+  background-color: #dbecf8;
+  color: #1e1e2f;
+  flex: 1;
+  font-size: 0.95rem;
+  padding: 0.35rem 0.5rem;
+  margin: 0.35rem 0.5rem;
+  border: 1px solid #c9d1d9;
+  border-radius: 6px;
+  max-width: 25vw;
+}
+
+.pill-edit-title:focus,
+.pill-edit-desc:focus {
+  outline: 2px solid #7ea6e0;
+  outline-offset: 1px;
+}
+
+.pill-desc-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pill-edit-desc {
+  background-color: #dbecf8;
+  color: #1e1e2f;
+  display: flex;
+  max-width: 25vw;
+  font-size: 0.8rem;
+  line-height: 1.25;
+  padding: 0.45rem 0.55rem;
+  margin: 0.35rem 0.5rem;
+  border: 1px solid #c9d1d9;
+  border-radius: 6px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.pill-edit-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.pill-edit-actions .edit-save,
+.pill-edit-actions .edit-cancel {
+  padding: 0.45rem 0.8rem;
+  font-size: 0.75rem;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #7ea6e0;
+  color: #fff;
+}
+
+.pill-edit-actions .edit-cancel {
+  background: #6b7280;
+}
+
+.pill-edit-actions .edit-save:hover {
+  background: #30384b;
+}
+
+.pill-edit-actions .edit-cancel:hover {
+  background: #525a65;
+}

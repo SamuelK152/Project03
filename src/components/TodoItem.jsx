@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import "../styles/Item.css";
 
 export default function ToDoItem({
   id,
@@ -84,7 +85,7 @@ export default function ToDoItem({
 
   return (
     <li
-      className={`todo-pill ${completed ? "done" : ""} ${
+      className={`item-pill ${completed ? "done" : ""} ${
         expanded ? "expanded" : ""
       } ${editing ? "editing" : ""}`}
       onClick={handleExpand}

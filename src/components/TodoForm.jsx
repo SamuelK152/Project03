@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import "../styles/Form.css";
 
 export default function TodoForm({ open, onOpen, onClose, onAdd }) {
   const [text, setText] = useState("");
@@ -25,11 +26,11 @@ export default function TodoForm({ open, onOpen, onClose, onAdd }) {
     <>
       <aside
         ref={drawerRef}
-        className={`todo-drawer handle-right ${open ? "open" : ""}`}
+        className={`form-drawer handle-right ${open ? "open" : ""}`}
       >
         <div className="drawer-body">
           <h3>New Todo</h3>
-          <form onSubmit={handleSubmit} className="todo-form">
+          <form onSubmit={handleSubmit} className="new-form">
             <label>
               <span>Task</span>
               <input

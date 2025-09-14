@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import "../styles/Form.css";
 
 export default function ContactForm({ open, onOpen, onClose, onAdd }) {
   const [text, setText] = useState("");
@@ -25,27 +26,27 @@ export default function ContactForm({ open, onOpen, onClose, onAdd }) {
     <>
       <aside
         ref={drawerRef}
-        className={`contact-drawer handle-right ${open ? "open" : ""}`}
+        className={`form-drawer handle-right ${open ? "open" : ""}`}
       >
         <div className="drawer-body">
           <h3>New Contact</h3>
-          <form onSubmit={handleSubmit} className="contact-form">
+          <form onSubmit={handleSubmit} className="new-form">
             <label>
-              <span>Task</span>
+              <span>Name</span>
               <input
                 ref={inputRef}
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                placeholder="e.g. Buy milk"
+                placeholder="John Doe"
               />
             </label>
             <label>
-              <span>Description</span>
+              <span>Email</span>
               <input
                 value={desc}
                 onChange={(e) => setDesc(e.target.value)}
                 rows={3}
-                placeholder="Details..."
+                placeholder="someone@email.com"
               />
             </label>
             <div className="drawer-actions">

@@ -1,4 +1,5 @@
 import ContactItem from "./ContactItem";
+import "../styles/ItemList.css";
 
 export default function ContactList({
   items = [],
@@ -10,7 +11,7 @@ export default function ContactList({
     return <p className="no-contact">No Contacts</p>;
   }
   return (
-    <ul className="contact-list">
+    <ul className="item-list">
       {items.map((item) => (
         <ContactItem
           key={item.id}

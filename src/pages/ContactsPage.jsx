@@ -75,8 +75,8 @@ export default function ContactsPage() {
 
   return (
     <section className="contacts-page">
-      <div className="contacts-header-row">
-        <div className="contact-filters">
+      <div className="header-row">
+        <div className="item-filters">
           <label>
             <span className="visually-hidden">Filter</span>
             <select
