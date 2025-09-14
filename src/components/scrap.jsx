@@ -90,48 +90,32 @@ export default function ToDoItem({
       onClick={handleExpand}
     >
       <div className="pill-row">
-        <div className="pill-info">
-          {!editing && <span className="pill-text">{text}</span>}
-          {!editing && expanded && description && (
-            <div className="pill-desc">{description}</div>
-          )}
-        </div>
-        <div className="edit-box">
-          {editing && (
-            <input
-              ref={textInputRef}
-              className="pill-edit-title"
-              value={draftText}
-              onChange={(e) => setDraftText(e.target.value)}
-              onKeyDown={keyHandler}
-              placeholder="Title"
-            />
-          )}
-          {editing && (
-            <div className="pill-desc-edit">
-              <input
-                className="pill-edit-desc"
-                value={draftDesc}
-                onChange={(e) => setDraftDesc(e.target.value)}
-                onKeyDown={keyHandler}
-                placeholder="Description (optional)"
-                rows={3}
-              />
-              <div className="pill-edit-actions">
-                <button type="button" className="edit-save" onClick={saveEdit}>
-                  Save
-                </button>
-                <button
-                  type="button"
-                  className="edit-cancel"
-                  onClick={cancelEdit}
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
+        <button
+          type="button"
+          className="pill-toggle"
+          aria-pressed={completed}
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggle(id);
+          }}
+          title={completed ? "Mark incomplete" : "Mark complete"}
+        >
+          {completed ? "✔" : "○"}
+        </button>
+
+        {!editing && <span className="pill-text">{text}</span>}
+
+        {editing && (
+          <input
+            ref={textInputRef}
+            className="pill-edit-title"
+            value={draftText}
+            onChange={(e) => setDraftText(e.target.value)}
+            onKeyDown={keyHandler}
+            placeholder="Title"
+          />
+        )}
+
         <div className="pill-actions" ref={menuRef}>
           <button
             type="button"
@@ -142,18 +126,6 @@ export default function ToDoItem({
             title="Options"
           >
             …
-          </button>
-          <button
-            type="button"
-            className="pill-toggle"
-            aria-pressed={completed}
-            onClick={(e) => {
-              e.stopPropagation();
-              onToggle(id);
-            }}
-            title={completed ? "Mark incomplete" : "Mark complete"}
-          >
-            {completed ? "✔" : "○"}
           </button>
           {menuOpen && (
             <ul className="pill-menu" role="menu">
@@ -196,6 +168,31 @@ export default function ToDoItem({
           )}
         </div>
       </div>
+
+      {editing && (
+        <div className="pill-desc-edit">
+          <textarea
+            className="pill-edit-desc"
+            value={draftDesc}
+            onChange={(e) => setDraftDesc(e.target.value)}
+            onKeyDown={keyHandler}
+            placeholder="Description (optional)"
+            rows={3}
+          />
+          <div className="pill-edit-actions">
+            <button type="button" className="edit-save" onClick={saveEdit}>
+              Save
+            </button>
+            <button type="button" className="edit-cancel" onClick={cancelEdit}>
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
+
+      {!editing && expanded && description && (
+        <div className="pill-desc">{description}</div>
+      )}
     </li>
   );
 }

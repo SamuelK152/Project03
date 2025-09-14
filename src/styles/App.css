@@ -29,6 +29,7 @@ header {
   width: 100%;
   box-sizing: border-box;
   background-color: #7ea6e0;
+  text-shadow: 2px 2px rgba(24, 22, 43, 0.4);
 }
 
 #logo {
@@ -84,7 +85,7 @@ header {
   width: 64px;
   min-width: 64px;
   background: #1e1e2f;
-  color: #fff;
+  color: #d6d6d6;
   border: none;
   border-radius: 0%;
   cursor: pointer;
@@ -100,7 +101,8 @@ header {
   pointer-events: auto;
 }
 .drawer-handle-btn:hover {
-  filter: brightness(1.05);
+  filter: brightness(1.1);
+  color: #7ea6e0;
 }
 .drawer-handle-btn:active {
   transform: translateY(1px);
@@ -108,6 +110,8 @@ header {
 
 .drawer-handle-btn .handle-icon {
   line-height: 1;
+  margin-bottom: auto;
+  margin-top: 1rem;
 }
 .drawer-handle-btn .handle-text {
   font-size: 0.65rem;
@@ -188,7 +192,6 @@ main {
   padding-bottom: 2rem;
 }
 
-/* ...existing code... */
 .todo-list {
   list-style: none;
   margin: 1rem 0 0;
@@ -225,6 +228,7 @@ main {
   display: flex;
   align-items: center;
   gap: 0.65rem;
+  width: 100%;
 }
 
 .todo-pill:hover {
@@ -240,6 +244,84 @@ main {
 .todo-pill.done .pill-text {
   text-decoration: line-through;
   color: #5b6b74;
+}
+.todo-pill.done .pill-desc {
+  text-decoration: line-through;
+  color: #5b6b74;
+}
+
+/* Inline edit */
+
+.todo-pill.editing {
+  background: #d6eaf8;
+  border-color: #7ea6e0;
+}
+
+.pill-edit-title {
+  background-color: #dbecf8;
+  color: #1e1e2f;
+  flex: 1;
+  font-size: 0.95rem;
+  padding: 0.35rem 0.5rem;
+  margin: 0.35rem 0.5rem;
+  border: 1px solid #c9d1d9;
+  border-radius: 6px;
+  max-width: 25vw;
+}
+
+.pill-edit-title:focus,
+.pill-edit-desc:focus {
+  outline: 2px solid #7ea6e0;
+  outline-offset: 1px;
+}
+
+.pill-desc-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pill-edit-desc {
+  background-color: #dbecf8;
+  color: #1e1e2f;
+  display: flex;
+  max-width: 25vw;
+  font-size: 0.8rem;
+  line-height: 1.25;
+  padding: 0.45rem 0.55rem;
+  margin: 0.35rem 0.5rem;
+  border: 1px solid #c9d1d9;
+  border-radius: 6px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.pill-edit-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.pill-edit-actions .edit-save,
+.pill-edit-actions .edit-cancel {
+  padding: 0.45rem 0.8rem;
+  font-size: 0.75rem;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #7ea6e0;
+  color: #fff;
+}
+
+.pill-edit-actions .edit-cancel {
+  background: #6b7280;
+}
+
+.pill-edit-actions .edit-save:hover {
+  background: #30384b;
+}
+
+.pill-edit-actions .edit-cancel:hover {
+  background: #525a65;
 }
 
 .pill-toggle {
@@ -265,6 +347,9 @@ main {
   border-color: #1e1e2f;
 }
 
+.todo-pill.expanded {
+}
+
 .todo-pill.done .pill-toggle {
   border-color: #3a9c5b;
   color: #247a40;
@@ -280,4 +365,71 @@ main {
   flex: 1;
   overflow-wrap: anywhere;
   font-weight: 700;
+}
+
+.pill-actions {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.pill-menu-btn {
+  background: transparent;
+  color: #374151;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  line-height: 1;
+  padding: 0 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.pill-menu-btn:hover {
+  background: #f0f4f8;
+  border-color: #8594a5;
+}
+
+.pill-menu {
+  position: absolute;
+  top: 36px;
+  right: 0;
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 4px 0;
+  background: #ffffff;
+  border: 1px solid #d0d7df;
+  border-radius: 8px;
+  min-width: 140px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  z-index: 10;
+}
+
+.pill-menu li {
+  margin: 0;
+  padding: 0;
+}
+
+.pill-menu button {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: #1f2933;
+}
+
+.pill-menu button:hover {
+  background: transparent;
+}
+
+.pill-menu button:active {
+  background: #d9e2ec;
 }

@@ -1,6 +1,6 @@
 import ToDoItem from "./TodoItem";
 
-export default function ToDoList({ items = [], onToggle }) {
+export default function ToDoList({ items = [], onToggle, onEdit, onDelete }) {
   if (!items.length) {
     return <p>No TODOs yet.</p>;
   }
@@ -14,6 +14,8 @@ export default function ToDoList({ items = [], onToggle }) {
           description={item.description}
           completed={item.completed}
           onToggle={onToggle}
+          onEdit={onEdit}
+          onDelete={onDelete}
         />
       ))}
     </ul>
