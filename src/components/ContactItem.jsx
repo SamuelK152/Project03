@@ -4,19 +4,21 @@ import "../styles/Item.css";
 export default function ContactItem({
   id,
   text,
-  description,
-  completed,
-  onToggle,
+  email,
+  comments,
+  favorite,
+  onToggleFavorite,
   onEdit,
   onDelete,
 }) {
   const [expanded, setExpanded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [editing, setEditing] = useState(false);
-  const [draftText, setDraftText] = useState(text);
-  const [draftDesc, setDraftDesc] = useState(description || "");
+  const [draftName, setDraftName] = useState(text);
+  const [draftEmail, setDraftEmail] = useState(email || "");
+  const [draftComments, setDraftComments] = useState(comments || "");
   const menuRef = useRef(null);
-  const textInputRef = useRef(null);
+  const nameInputRef = useRef(null);
 
   // Close menu on outside click
   useEffect(() => {
@@ -31,9 +33,9 @@ export default function ContactItem({
 
   // Focus first input when entering edit mode
   useEffect(() => {
-    if (editing && textInputRef.current) {
-      textInputRef.current.focus();
-      textInputRef.current.select();
+    if (editing && nameInputRef.current) {
+      nameInputRef.current.focus();
+      nameInputRef.current.select();
     }
   }, [editing]);
 
@@ -44,14 +46,15 @@ export default function ContactItem({
 
   function handleExpand() {
     if (editing) return;
-    if (description) setExpanded((p) => !p);
+    if (email || comments) setExpanded((p) => !p);
   }
 
   function startEdit(e) {
     e.stopPropagation();
     setMenuOpen(false);
-    setDraftText(text);
-    setDraftDesc(description || "");
+    setDraftName(text);
+    setDraftEmail(email || "");
+    setDraftComments(comments || "");
     setEditing(true);
     setExpanded(true);
   }
@@ -59,17 +62,19 @@ export default function ContactItem({
   function cancelEdit(e) {
     e?.stopPropagation();
     setEditing(false);
-    setDraftText(text);
-    setDraftDesc(description || "");
+    setDraftName(text);
+    setDraftEmail(email || "");
+    setDraftComments(comments || "");
   }
 
   function saveEdit(e) {
     e?.stopPropagation();
-    const trimmedTitle = draftText.trim();
-    if (!trimmedTitle) return;
+    const trimmedName = draftName.trim();
+    if (!trimmedName) return;
     onEdit?.(id, {
-      text: trimmedTitle,
-      description: draftDesc.trim(),
+      text: trimmedName,
+      email: draftEmail.trim(),
+      comments: draftComments.trim(),
     });
     setEditing(false);
   }
@@ -77,7 +82,7 @@ export default function ContactItem({
   function keyHandler(e) {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      saveEdit(e);
+      if (e.target.name !== "comments") saveEdit(e);
     } else if (e.key === "Escape") {
       cancelEdit(e);
     }
@@ -85,37 +90,58 @@ export default function ContactItem({
 
   return (
     <li
-      className={`item-pill ${completed ? "done" : ""} ${
+      className={`item-pill ${favorite ? "favorite" : ""} ${
         expanded ? "expanded" : ""
       } ${editing ? "editing" : ""}`}
       onClick={handleExpand}
     >
       <div className="pill-row">
         <div className="pill-info">
-          {!editing && <span className="pill-text">{text}</span>}
-          {!editing && expanded && description && (
-            <div className="pill-desc">{description}</div>
+          {!editing && (
+            <span className="pill-text">
+              {text}{" "}
+              {favorite && (
+                <span aria-label="Favorite" title="Favorite">
+                  ★
+                </span>
+              )}
+            </span>
+          )}
+          {!editing && expanded && (
+            <div className="pill-extra">
+              {email && <div className="pill-email">{email}</div>}
+              {comments && <div className="pill-comments">{comments}</div>}
+            </div>
           )}
         </div>
         <div className="edit-box">
           {editing && (
-            <input
-              ref={textInputRef}
-              className="pill-edit-title"
-              value={draftText}
-              onChange={(e) => setDraftText(e.target.value)}
-              onKeyDown={keyHandler}
-              placeholder="Title"
-            />
-          )}
-          {editing && (
-            <div className="pill-desc-edit">
+            <div className="pill-edit-fields">
               <input
-                className="pill-edit-desc"
-                value={draftDesc}
-                onChange={(e) => setDraftDesc(e.target.value)}
+                ref={nameInputRef}
+                className="pill-edit-title"
+                name="name"
+                value={draftName}
+                onChange={(e) => setDraftName(e.target.value)}
                 onKeyDown={keyHandler}
-                placeholder="Description (optional)"
+                placeholder="Full name"
+              />
+              <input
+                className="pill-edit-email"
+                name="email"
+                type="email"
+                value={draftEmail}
+                onChange={(e) => setDraftEmail(e.target.value)}
+                onKeyDown={keyHandler}
+                placeholder="Email"
+              />
+              <textarea
+                className="pill-edit-comments"
+                name="comments"
+                value={draftComments}
+                onChange={(e) => setDraftComments(e.target.value)}
+                onKeyDown={keyHandler}
+                placeholder="Comments / notes"
                 rows={3}
               />
               <div className="pill-edit-actions">
@@ -147,14 +173,14 @@ export default function ContactItem({
           <button
             type="button"
             className="pill-toggle"
-            aria-pressed={completed}
+            aria-pressed={favorite}
             onClick={(e) => {
               e.stopPropagation();
-              onToggle(id);
+              onToggleFavorite(id);
             }}
-            title={completed ? "Mark incomplete" : "Mark complete"}
+            title={favorite ? "Unfavorite" : "Mark favorite"}
           >
-            {completed ? "✔" : "○"}
+            {favorite ? "★" : "☆"}
           </button>
           {menuOpen && (
             <ul className="pill-menu" role="menu">

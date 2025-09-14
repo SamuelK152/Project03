@@ -8,57 +8,58 @@ export default function ContactsPage() {
   const [contacts, setContacts] = useState([
     {
       id: 0,
-      text: "Buy milk",
-      description: "2% from the store",
-      completed: false,
+      text: "Ada Lovelace",
+      email: "ada@example.com",
+      comments: "Analytical Engine pioneer",
+      favorite: true,
     },
     {
       id: 1,
-      text: "Walk dog",
-      description: "30 min after work",
-      completed: true,
+      text: "Grace Hopper",
+      email: "grace@example.com",
+      comments: "COBOL / compiler trailblazer",
+      favorite: false,
     },
     {
       id: 2,
-      text: "Write code",
-      description: "Finish Todo App",
-      completed: false,
+      text: "Alan Turing",
+      email: "alan@example.com",
+      comments: "Turing machine concept",
+      favorite: false,
     },
   ]);
   const [open, setOpen] = useState(false);
   const [filter, setFilter] = useState("all");
 
-  function handleAdd({ text, description }) {
+  function handleAdd({ text, email, comments }) {
     setContacts((prev) => [
       ...prev,
-      { id: idSeq++, text, description, completed: false },
+      { id: idSeq++, text, email, comments, favorite: false },
     ]);
   }
 
-  function handleToggle(id) {
+  function handleToggleFavorite(id) {
     setContacts((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t))
+      prev.map((c) => (c.id === id ? { ...c, favorite: !c.favorite } : c))
     );
   }
 
   function handleEdit(id, updates) {
     setContacts((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, ...updates } : t))
+      prev.map((c) => (c.id === id ? { ...c, ...updates } : c))
     );
   }
 
   function handleDelete(id) {
-    const contact = contacts.find((t) => t.id === id);
+    const contact = contacts.find((c) => c.id === id);
     if (!window.confirm("Delete this contact?")) return;
-    setContacts((prev) => prev.filter((t) => t.id !== id));
+    setContacts((prev) => prev.filter((c) => c.id !== id));
   }
 
   const visibleContacts = useMemo(() => {
     switch (filter) {
-      case "active":
-        return contacts.filter((t) => !t.completed);
-      case "completed":
-        return contacts.filter((t) => t.completed);
+      case "favorites":
+        return contacts.filter((c) => c.favorite);
       default:
         return contacts;
     }
@@ -67,8 +68,7 @@ export default function ContactsPage() {
   const counts = useMemo(
     () => ({
       total: contacts.length,
-      active: contacts.filter((t) => !t.completed).length,
-      completed: contacts.filter((t) => t.completed).length,
+      active: contacts.filter((c) => !c.favorite).length,
     }),
     [contacts]
   );
@@ -85,8 +85,7 @@ export default function ContactsPage() {
               onChange={(e) => setFilter(e.target.value)}
             >
               <option value="all">All ({counts.total})</option>
-              <option value="active">Active ({counts.active})</option>
-              <option value="completed">Completed ({counts.completed})</option>
+              <option value="favorites">Favorites ({counts.favorites})</option>
             </select>
           </label>
         </div>
@@ -95,7 +94,7 @@ export default function ContactsPage() {
 
       <ContactList
         items={visibleContacts}
-        onToggle={handleToggle}
+        onToggleFavorite={handleToggleFavorite}
         onEdit={handleEdit}
         onDelete={handleDelete}
       />

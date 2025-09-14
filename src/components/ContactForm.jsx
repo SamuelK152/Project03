@@ -2,10 +2,10 @@ import { useState, useEffect, useRef } from "react";
 import "../styles/Form.css";
 
 export default function ContactForm({ open, onOpen, onClose, onAdd }) {
-  const [text, setText] = useState("");
-  const [desc, setDesc] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [comments, setComments] = useState("");
   const inputRef = useRef(null);
-  const drawerRef = useRef(null);
 
   useEffect(() => {
     if (open && inputRef.current) {
@@ -15,19 +15,21 @@ export default function ContactForm({ open, onOpen, onClose, onAdd }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!text.trim()) return;
-    onAdd({ text: text.trim(), description: desc.trim() });
-    setText("");
-    setDesc("");
+    if (!name.trim()) return;
+    onAdd({
+      text: name.trim(),
+      email: email.trim(),
+      comments: comments.trim(),
+    });
+    setName("");
+    setEmail("");
+    setComments("");
     onClose();
   }
 
   return (
     <>
-      <aside
-        ref={drawerRef}
-        className={`form-drawer handle-right ${open ? "open" : ""}`}
-      >
+      <aside className={`form-drawer handle-right ${open ? "open" : ""}`}>
         <div className="drawer-body">
           <h3>New Contact</h3>
           <form onSubmit={handleSubmit} className="new-form">
@@ -35,18 +37,27 @@ export default function ContactForm({ open, onOpen, onClose, onAdd }) {
               <span>Name</span>
               <input
                 ref={inputRef}
-                value={text}
-                onChange={(e) => setText(e.target.value)}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 placeholder="John Doe"
               />
             </label>
             <label>
               <span>Email</span>
               <input
-                value={desc}
-                onChange={(e) => setDesc(e.target.value)}
-                rows={3}
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="someone@email.com"
+              />
+            </label>
+            <label>
+              <span>Comments</span>
+              <textarea
+                value={comments}
+                onChange={(e) => setComments(e.target.value)}
+                placeholder="Notes"
+                rows={3}
               />
             </label>
             <div className="drawer-actions">

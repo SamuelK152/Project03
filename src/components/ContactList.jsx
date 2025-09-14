@@ -1,25 +1,27 @@
 import ContactItem from "./ContactItem";
+import onToggleFavorite from "./ContactItem.jsx";
 import "../styles/ItemList.css";
 
 export default function ContactList({
   items = [],
-  onToggle,
+  onToggleFavorite,
   onEdit,
   onDelete,
 }) {
   if (!items.length) {
-    return <p className="no-contact">No Contacts</p>;
+    return <p className="no-item">No Contacts</p>;
   }
   return (
     <ul className="item-list">
-      {items.map((item) => (
+      {items.map((c) => (
         <ContactItem
-          key={item.id}
-          id={item.id}
-          text={item.text}
-          description={item.description}
-          completed={item.completed}
-          onToggle={onToggle}
+          key={c.id}
+          id={c.id}
+          text={c.text}
+          email={c.email}
+          comments={c.comments}
+          favorite={c.favorite}
+          onToggleFavorite={onToggleFavorite}
           onEdit={onEdit}
           onDelete={onDelete}
         />
