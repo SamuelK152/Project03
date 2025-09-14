@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import ToDoList from "../components/TodoList.jsx";
 import TodoForm from "../components/TodoForm.jsx";
 
@@ -26,6 +26,7 @@ export default function TodosPage() {
     },
   ]);
   const [open, setOpen] = useState(false);
+  const [filter, setFilter] = useState("all");
 
   function handleAdd({ text, description }) {
     setTodos((prev) => [
@@ -52,11 +53,48 @@ export default function TodosPage() {
     setTodos((prev) => prev.filter((t) => t.id !== id));
   }
 
+  const visibleTodos = useMemo(() => {
+    switch (filter) {
+      case "active":
+        return todos.filter((t) => !t.completed);
+      case "completed":
+        return todos.filter((t) => t.completed);
+      default:
+        return todos;
+    }
+  }, [todos, filter]);
+
+  const counts = useMemo(
+    () => ({
+      total: todos.length,
+      active: todos.filter((t) => !t.completed).length,
+      completed: todos.filter((t) => t.completed).length,
+    }),
+    [todos]
+  );
+
   return (
     <section className="todos-page">
-      <h2 className="page-title">TODO List</h2>
+      <div className="todos-header-row">
+        <div className="todo-filters">
+          <label>
+            <span className="visually-hidden">Filter</span>
+            <select
+              className="dropdown"
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+            >
+              <option value="all">All ({counts.total})</option>
+              <option value="active">Active ({counts.active})</option>
+              <option value="completed">Completed ({counts.completed})</option>
+            </select>
+          </label>
+        </div>
+        <h2 className="page-title">TODO List</h2>
+      </div>
+
       <ToDoList
-        items={todos}
+        items={visibleTodos}
         onToggle={handleToggle}
         onEdit={handleEdit}
         onDelete={handleDelete}

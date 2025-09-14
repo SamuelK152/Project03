@@ -35,6 +35,7 @@ header {
 #logo {
   display: flex;
   margin-right: auto;
+  user-select: none;
 }
 #nav-buttons {
   display: flex;
@@ -48,6 +49,7 @@ header {
 
 .nav-link:hover {
   color: #1e1e2f;
+  text-shadow: none;
 }
 
 /* --- Drawer --- */
@@ -187,9 +189,46 @@ main {
   color: black;
 }
 
+.todos-header-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.dropdown {
+  background-color: #fff;
+  color: #1e1e2f;
+  cursor: pointer;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+}
+
 .page-title {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   margin-top: 0;
-  padding-bottom: 2rem;
+  padding-bottom: 0;
+  text-align: center;
+  width: fit-content;
+}
+
+.no-todo {
+  width: 60vw;
+  color: #6d6d6d;
 }
 
 .todo-list {

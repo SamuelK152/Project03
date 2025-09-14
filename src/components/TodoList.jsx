@@ -2,7 +2,7 @@ import ToDoItem from "./TodoItem";
 
 export default function ToDoList({ items = [], onToggle, onEdit, onDelete }) {
   if (!items.length) {
-    return <p>No TODOs yet.</p>;
+    return <p className="no-todo">No active TODOs</p>;
   }
   return (
     <ul className="todo-list">
