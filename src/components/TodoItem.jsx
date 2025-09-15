@@ -99,24 +99,21 @@ export default function ToDoItem({
         </div>
         <div className="edit-box">
           {editing && (
-            <input
-              ref={textInputRef}
-              className="pill-edit-title"
-              value={draftText}
-              onChange={(e) => setDraftText(e.target.value)}
-              onKeyDown={keyHandler}
-              placeholder="Title"
-            />
-          )}
-          {editing && (
-            <div className="pill-desc-edit">
+            <div className="pill-edit-fields">
               <input
-                className="pill-edit-desc"
+                ref={textInputRef}
+                className="pill-edit"
+                value={draftText}
+                onChange={(e) => setDraftText(e.target.value)}
+                onKeyDown={keyHandler}
+                placeholder="Title"
+              />
+              <input
+                className="pill-edit"
                 value={draftDesc}
                 onChange={(e) => setDraftDesc(e.target.value)}
                 onKeyDown={keyHandler}
                 placeholder="Description (optional)"
-                rows={3}
               />
               <div className="pill-edit-actions">
                 <button type="button" className="edit-save" onClick={saveEdit}>

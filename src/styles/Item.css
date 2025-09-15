@@ -162,52 +162,43 @@
   border-color: #7ea6e0;
 }
 
-.pill-edit-title {
+.pill-edit {
   background-color: #dbecf8;
   color: #1e1e2f;
-  flex: 1;
   font-size: 0.95rem;
-  padding: 0.35rem 0.5rem;
+  padding: 0.4rem 0.55rem;
   margin: 0.35rem 0.5rem;
   border: 1px solid #c9d1d9;
   border-radius: 6px;
-  max-width: 25vw;
+  width: 50vw;
+  font-family: inherit;
+  box-sizing: border-box;
+  resize: vertical;
 }
 
-.pill-edit-title:focus,
-.pill-edit-desc:focus {
+.pill-edit:focus {
   outline: 2px solid #7ea6e0;
   outline-offset: 1px;
 }
 
-.pill-desc-edit {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+.pill-edit:focus {
+  outline: 2px solid #7ea6e0;
+  outline-offset: 1px;
 }
 
-.pill-edit-desc {
-  background-color: #dbecf8;
-  color: #1e1e2f;
+.pill-edit-fields {
   display: flex;
-  max-width: 25vw;
-  font-size: 0.8rem;
-  line-height: 1.25;
-  padding: 0.45rem 0.55rem;
-  margin: 0.35rem 0.5rem;
-  border: 1px solid #c9d1d9;
-  border-radius: 6px;
-  font-family: inherit;
-  box-sizing: border-box;
+  flex-direction: column;
 }
 
 .pill-edit-actions {
   display: flex;
   gap: 0.5rem;
+  margin: 0.35rem 0.5rem;
 }
 
-.pill-edit-actions .edit-save,
-.pill-edit-actions .edit-cancel {
+.edit-save,
+.edit-cancel {
   padding: 0.45rem 0.8rem;
   font-size: 0.75rem;
   border: 1px solid transparent;
@@ -217,14 +208,14 @@
   color: #fff;
 }
 
-.pill-edit-actions .edit-cancel {
+.edit-cancel {
   background: #6b7280;
 }
 
-.pill-edit-actions .edit-save:hover {
+.edit-save:hover {
   background: #30384b;
 }
 
-.pill-edit-actions .edit-cancel:hover {
+.edit-cancel:hover {
   background: #525a65;
 }

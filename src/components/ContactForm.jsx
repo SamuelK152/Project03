@@ -36,6 +36,7 @@ export default function ContactForm({ open, onOpen, onClose, onAdd }) {
             <label>
               <span>Name</span>
               <input
+                type="text"
                 ref={inputRef}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -53,7 +54,8 @@ export default function ContactForm({ open, onOpen, onClose, onAdd }) {
             </label>
             <label>
               <span>Comments</span>
-              <textarea
+              <input
+                type="text"
                 value={comments}
                 onChange={(e) => setComments(e.target.value)}
                 placeholder="Notes"

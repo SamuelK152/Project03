@@ -118,8 +118,9 @@ export default function ContactItem({
           {editing && (
             <div className="pill-edit-fields">
               <input
+                type="text"
                 ref={nameInputRef}
-                className="pill-edit-title"
+                className="pill-edit"
                 name="name"
                 value={draftName}
                 onChange={(e) => setDraftName(e.target.value)}
@@ -127,7 +128,7 @@ export default function ContactItem({
                 placeholder="Full name"
               />
               <input
-                className="pill-edit-email"
+                className="pill-edit"
                 name="email"
                 type="email"
                 value={draftEmail}
@@ -135,8 +136,9 @@ export default function ContactItem({
                 onKeyDown={keyHandler}
                 placeholder="Email"
               />
-              <textarea
-                className="pill-edit-comments"
+              <input
+                type="text"
+                className="pill-edit"
                 name="comments"
                 value={draftComments}
                 onChange={(e) => setDraftComments(e.target.value)}
