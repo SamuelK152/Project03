@@ -1,9 +1,24 @@
 import ToDoItem from "./TodoItem";
 import "../styles/ItemList.css";
 
-export default function ToDoList({ items = [], onToggle, onEdit, onDelete }) {
+export default function ToDoList({
+  items = [],
+  onToggle,
+  onEdit,
+  onDelete,
+  onOpenNew,
+}) {
   if (!items.length) {
-    return <p className="no-item">No active TODOs</p>;
+    return (
+      <div className="no-item">
+        <p>No active TODOs</p>
+        {onOpenNew && (
+          <button type="button" className="primary" onClick={onOpenNew}>
+            Add TODO
+          </button>
+        )}
+      </div>
+    );
   }
   return (
     <ul className="item-list">

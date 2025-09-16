@@ -98,6 +98,7 @@ export default function ContactsPage() {
         onToggleFavorite={handleToggleFavorite}
         onEdit={handleEdit}
         onDelete={handleDelete}
+        onOpenNew={() => setOpen(true)}
       />
       <ContactForm
         open={open}

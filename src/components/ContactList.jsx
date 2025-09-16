@@ -1,5 +1,4 @@
 import ContactItem from "./ContactItem";
-import onToggleFavorite from "./ContactItem.jsx";
 import "../styles/ItemList.css";
 
 export default function ContactList({
@@ -7,9 +6,19 @@ export default function ContactList({
   onToggleFavorite,
   onEdit,
   onDelete,
+  onOpenNew,
 }) {
   if (!items.length) {
-    return <p className="no-item">No Contacts</p>;
+    return (
+      <div className="no-item">
+        <p>No Contacts</p>
+        {onOpenNew && (
+          <button type="button" className="primary" onClick={onOpenNew}>
+            Add Contact
+          </button>
+        )}
+      </div>
+    );
   }
   return (
     <ul className="item-list">

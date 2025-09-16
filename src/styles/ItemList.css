@@ -8,3 +8,15 @@
   width: 60vw;
   text-align: left;
 }
+
+.primary {
+  color: #1e1e2f;
+  background-color: #d6eaf8;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4);
+}
+
+.primary:hover {
+  background-color: #7ea6e0;
+  border-color: #1e1e2f;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+}

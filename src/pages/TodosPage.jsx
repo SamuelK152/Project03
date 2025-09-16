@@ -17,7 +17,7 @@ export default function TodosPage() {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
       if (Array.isArray(saved)) setTodos(saved);
     } catch {
-      setTodos({});
+      setTodos([]);
     }
   }, []);
 
@@ -102,6 +102,7 @@ export default function TodosPage() {
         onToggle={handleToggle}
         onEdit={handleEdit}
         onDelete={handleDelete}
+        onOpenNew={() => setOpen(true)}
       />
       <TodoForm
         open={open}
