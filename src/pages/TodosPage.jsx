@@ -1,37 +1,41 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import ToDoList from "../components/TodoList.jsx";
 import TodoForm from "../components/TodoForm.jsx";
 
-let idSeq = 3;
+const STORAGE_KEY = "todos.v1";
 
 export default function TodosPage() {
-  const [todos, setTodos] = useState([
-    {
-      id: 0,
-      text: "Buy milk",
-      description: "2% from the store",
-      completed: false,
-    },
-    {
-      id: 1,
-      text: "Walk dog",
-      description: "30 min after work",
-      completed: true,
-    },
-    {
-      id: 2,
-      text: "Write code",
-      description: "Finish Todo App",
-      completed: false,
-    },
-  ]);
+  const [todos, setTodos] = useState([]);
   const [open, setOpen] = useState(false);
   const [filter, setFilter] = useState("all");
+  const loadedRef = useRef(false);
+
+  useEffect(() => {
+    if (loadedRef.current) return;
+    loadedRef.current = true;
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+      if (Array.isArray(saved)) setTodos(saved);
+    } catch {
+      setTodos({});
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!loadedRef.current) return;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+  }, [todos]);
+
+  function newId() {
+    return crypto.randomUUID
+      ? crypto.randomUUID()
+      : "t_" + Math.random().toString(36).slice(2);
+  }
 
   function handleAdd({ text, description }) {
     setTodos((prev) => [
       ...prev,
-      { id: idSeq++, text, description, completed: false },
+      { id: newId(), text, description, completed: false },
     ]);
   }
 

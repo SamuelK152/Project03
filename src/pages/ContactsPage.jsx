@@ -1,40 +1,41 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import ContactList from "../components/ContactList.jsx";
 import ContactForm from "../components/ContactForm.jsx";
 
-let idSeq = 3;
+const STORAGE_KEY = "contacts.v1";
 
 export default function ContactsPage() {
-  const [contacts, setContacts] = useState([
-    {
-      id: 0,
-      text: "Ada Lovelace",
-      email: "ada@example.com",
-      comments: "Analytical Engine pioneer",
-      favorite: true,
-    },
-    {
-      id: 1,
-      text: "Grace Hopper",
-      email: "grace@example.com",
-      comments: "COBOL / compiler trailblazer",
-      favorite: false,
-    },
-    {
-      id: 2,
-      text: "Alan Turing",
-      email: "alan@example.com",
-      comments: "Turing machine concept",
-      favorite: false,
-    },
-  ]);
+  const [contacts, setContacts] = useState([]);
   const [open, setOpen] = useState(false);
   const [filter, setFilter] = useState("all");
+  const loadedRef = useRef(false);
+
+  useEffect(() => {
+    if (loadedRef.current) return;
+    loadedRef.current = true;
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+      if (Array.isArray(saved)) setContacts(saved);
+    } catch {
+      setContacts([]);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!loadedRef.current) return;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(contacts));
+  }, [contacts]);
+
+  function newId() {
+    return crypto.randomUUID
+      ? crypto.randomUUID()
+      : "c_" + Math.random().toString(36).slice(2);
+  }
 
   function handleAdd({ text, email, comments }) {
     setContacts((prev) => [
       ...prev,
-      { id: idSeq++, text, email, comments, favorite: false },
+      { id: newId(), text, email, comments, favorite: false },
     ]);
   }
 
