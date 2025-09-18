@@ -1,5 +1,33 @@
 # TODO Manager
 
+**Author:** Sam Kehoe
+
+## GitHub Pages
+
+https://samuelk152.github.io/Project03/
+
+## Overview
+
+TODO Manager is a streamlined task management tool designed to help users organize and track their daily responsibilities with ease. Built with a clean and intuitive interface, it offers essential features for creating, viewing, and managing to-do items.
+
+## How to Use
+
+- Add New Tasks: Users can quickly input tasks with a title and optional description.
+
+- Task Completion: Clearly mark tasks as completed with a strike through and color change
+
+- Contact Integration: Includes a section for managing email contacts with optional comments.
+
+## Technologies Used
+
+- React 18 — UI library
+- React Router (HashRouter) — client-side routing for GitHub Pages
+- Vite + @vitejs/plugin-react — dev server and build tooling
+- Web Storage API (localStorage) — client-side persistence
+- CSS — custom styling
+- Node.js and npm — scripts and tooling
+- Git, GitHub Pages, gh-pages — deployment
+
 ## User Stories
 
 - TODO User Story 1:
@@ -36,3 +64,11 @@
   - As someone who no longer needs to contact someone,
   - I want to delete a contact from my list,
   - So I can keep a clean record.
+
+## Ideas for Future Improvement
+
+1. Include the ability to reorder TODOs
+2. Add the option to include a due date for TODOs
+3. Link TODOs with contacts for collaborative task tracking.
+
+---

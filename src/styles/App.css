@@ -37,6 +37,16 @@ header {
   margin-right: auto;
   user-select: none;
 }
+<<<<<<< Updated upstream
+=======
+
+@media (max-width: 1026px) {
+  #logo {
+    font-size: x-large;
+  }
+}
+
+>>>>>>> Stashed changes
 #nav-buttons {
   display: flex;
   margin-left: auto;
