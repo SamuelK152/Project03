@@ -24,7 +24,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2rem;
+  padding: 0 1rem;
   z-index: 1000;
   width: 100%;
   box-sizing: border-box;
@@ -34,19 +34,11 @@ header {
 
 #logo {
   display: flex;
+  font-size: 1.3rem;
   margin-right: auto;
   user-select: none;
 }
-<<<<<<< Updated upstream
-=======
 
-@media (max-width: 1026px) {
-  #logo {
-    font-size: x-large;
-  }
-}
-
->>>>>>> Stashed changes
 #nav-buttons {
   display: flex;
   margin-left: auto;
@@ -54,7 +46,17 @@ header {
 
 .nav-link {
   color: #f2f4f7;
-  padding: 2rem;
+  padding: 2vw;
+}
+@media (max-width: 385px) {
+  .nav-link {
+    font-size: 0.75rem;
+    padding: 1vw;
+  }
+
+  #logo {
+    font-size: 1rem;
+  }
 }
 
 .nav-link:hover {
@@ -73,6 +75,7 @@ main {
 .header-row {
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 1rem;
   justify-content: flex-start;
@@ -83,6 +86,7 @@ main {
   background-color: #fff;
   color: #1e1e2f;
   cursor: pointer;
+  margin-top: 5rem;
 }
 
 .visually-hidden {
@@ -101,7 +105,7 @@ main {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  margin-top: 0;
+  margin: 0;
   padding-bottom: 0;
   text-align: center;
   width: fit-content;
